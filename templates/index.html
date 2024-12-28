@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Tracker</title>
+    <title>Top Stock Performers</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,14 +33,23 @@
             padding: 10px 0;
             border-bottom: 1px solid #ddd;
         }
+        .symbol {
+            font-weight: bold;
+        }
+        .change {
+            color: green;
+        }
+        .change.negative {
+            color: red;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Stock Tracker</h1>
-        <h2>Top 10 Stocks</h2>
+        <h1>Top and Bottom Stock Performers</h1>
+        <h2>Top 10 Performers</h2>
         <ul id="top-stocks"></ul>
-        <h2>Bottom 10 Stocks</h2>
+        <h2>Bottom 10 Performers</h2>
         <ul id="bottom-stocks"></ul>
     </div>
     <script>
@@ -52,13 +61,13 @@
 
             data.top_10.forEach(stock => {
                 const li = document.createElement('li');
-                li.textContent = `${stock.name}: ${stock.growth}`;
+                li.innerHTML = `<span class="symbol">${stock.symbol}</span><span class="change">${stock.change}</span>`;
                 topStocks.appendChild(li);
             });
 
             data.bottom_10.forEach(stock => {
                 const li = document.createElement('li');
-                li.textContent = `${stock.name}: ${stock.growth}`;
+                li.innerHTML = `<span class="symbol">${stock.symbol}</span><span class="change negative">${stock.change}</span>`;
                 bottomStocks.appendChild(li);
             });
         }
